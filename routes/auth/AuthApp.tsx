@@ -9,7 +9,10 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
 import { Panel, Button, PageTitle } from "../../components";
-import { commitRegisterCredentials } from "../../store/domains/auth/actions";
+import {
+  commitRegisterCredentials,
+  commitSignInCredentials,
+} from "../../store/domains/auth";
 
 type AccordionPanel = "signIn" | "register";
 
@@ -28,6 +31,15 @@ const AuthApp = (): JSX.Element => {
   const handleSubmitRegister = () => {
     dispatch(
       commitRegisterCredentials({
+        nickname,
+        password,
+      })
+    );
+  };
+
+  const handleSubmitSignIn = () => {
+    dispatch(
+      commitSignInCredentials({
         nickname,
         password,
       })
@@ -64,7 +76,7 @@ const AuthApp = (): JSX.Element => {
                 setPassword(e.target.value)
               }
             />
-            <Button> Submit credentials </Button>
+            <Button onClick={handleSubmitSignIn}> Submit credentials </Button>
           </CredentialsPanel>
         </AccordionDetails>
       </Accordion>

@@ -1,13 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAction } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../..";
 
-// Define a type for the slice state
 interface AuthState {
   nickname: string;
 }
 
-// Define the initial state using that type
 const initialState: AuthState = {
   nickname: "",
 };
@@ -15,9 +13,26 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    signIn: (
+      state,
+      action: PayloadAction<{ nickname: string; token: string }>
+    ) => {
+      state.nickname = action.payload.nickname;
+    },
+  },
 });
 
-export const {} = authSlice.actions;
+export const { signIn } = authSlice.actions;
+
+export const commitRegisterCredentials = createAction<{
+  nickname: string;
+  password: string;
+}>("commitRegisterCredentials");
+
+export const commitSignInCredentials = createAction<{
+  nickname: string;
+  password: string;
+}>("commitSignInCredentials");
 
 export default authSlice.reducer;

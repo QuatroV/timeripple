@@ -3,6 +3,7 @@ export * from "./Avatar";
 export * from "./Button";
 export * from "./GlobalStyle";
 export * from "./Icon";
+export * from "./Modal";
 export * from "./PageTitle";
 export * from "./Panel";
 export * from "./SquadContainer";

@@ -14,13 +14,20 @@ export default async function handler(
   } = req;
   const userCandidate = await User.findOne({ where: { nickname } });
   if (userCandidate) {
+    const token = generateJwt(nickname);
+    const passwordMatch = userCandidate.getDataValue("password") === password;
+    if (passwordMatch) {
+      res.status(200).json({ success: true, token });
+    } else {
+      res.status(400).json({
+        success: false,
+        error: "Wrong password",
+      });
+    }
+  } else {
     res.status(400).json({
       success: false,
-      error: "User with such nickname already exists",
+      error: "User with such nickname was not found",
     });
-  } else {
-    User.create({ nickname, password });
-    const token = generateJwt(nickname);
-    res.status(200).json({ success: true, token });
   }
 }
