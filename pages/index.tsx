@@ -1,16 +1,11 @@
 import type { NextPage } from "next";
 
-import { Avatar, Panel, ActionsMenu, Button } from "../components";
+import HomeApp from "../routes/home/HomeApp";
 
 const Home: NextPage = () => {
   return (
     <>
-      <Panel></Panel>
-      <ActionsMenu />
-      <Panel labelText="Стек способностей"></Panel>
-      <Panel>
-        <Button> Submit turn </Button>
-      </Panel>
+      <HomeApp />
     </>
   );
 };

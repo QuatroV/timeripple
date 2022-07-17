@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
-import { Panel, Button, PageTitle } from "../../components";
+import { Panel, Button, HeaderTitle } from "../../components";
 import {
   commitRegisterCredentials,
   commitSignInCredentials,
@@ -48,7 +48,7 @@ const AuthApp = (): JSX.Element => {
 
   return (
     <>
-      <PageTitle>Auth</PageTitle>
+      <HeaderTitle>Auth</HeaderTitle>
       <Accordion
         expanded={accordionPanel === "signIn"}
         onChange={handleChange("signIn")}

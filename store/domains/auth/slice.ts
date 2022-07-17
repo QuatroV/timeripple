@@ -20,10 +20,13 @@ export const authSlice = createSlice({
     ) => {
       state.nickname = action.payload.nickname;
     },
+    signOut: (state) => {
+      state.nickname = initialState.nickname;
+    },
   },
 });
 
-export const { signIn } = authSlice.actions;
+export const { signIn, signOut } = authSlice.actions;
 
 export const commitRegisterCredentials = createAction<{
   nickname: string;

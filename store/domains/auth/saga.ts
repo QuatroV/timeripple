@@ -1,12 +1,14 @@
 import { trace } from "console";
 import Router from "next/router";
 import { all, takeLatest, call, SagaReturnType, put } from "redux-saga/effects";
+import { PAGES } from "../../../constants/pages";
 import { postRegister, postSignIn } from "../../../utils/apiMethods/authApi";
 import { addError } from "../error";
 import {
   signIn,
   commitRegisterCredentials,
   commitSignInCredentials,
+  signOut,
 } from "./slice";
 
 function* handleAuthError(e: Error) {
@@ -69,7 +71,11 @@ function* handleCommitSignIn(
 }
 
 function* handleSignIn(action: ReturnType<typeof signIn>) {
-  yield call(Router.push, "/");
+  yield call(Router.push, PAGES.HOME);
+}
+
+function* handleSignOut(action: ReturnType<typeof signOut>) {
+  yield call(Router.push, PAGES.AUTH);
 }
 
 export default function* authSaga(): Generator {
@@ -77,5 +83,6 @@ export default function* authSaga(): Generator {
     yield takeLatest(commitRegisterCredentials.type, handleCommitRegister),
     yield takeLatest(commitSignInCredentials.type, handleCommitSignIn),
     yield takeLatest(signIn.type, handleSignIn),
+    yield takeLatest(signOut.type, handleSignOut),
   ]);
 }
