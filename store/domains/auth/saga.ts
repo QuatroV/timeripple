@@ -1,9 +1,7 @@
-import { trace } from "console";
-import Router from "next/router";
 import { all, takeLatest, call, SagaReturnType, put } from "redux-saga/effects";
-import { PAGES } from "../../../constants/pages";
 import { postRegister, postSignIn } from "../../../utils/apiMethods/authApi";
 import { addError } from "../error";
+import { goToHomePage, goToAuthPage } from "../router/slice";
 import {
   signIn,
   commitRegisterCredentials,
@@ -70,12 +68,17 @@ function* handleCommitSignIn(
   }
 }
 
+function saveTokenInLocalStorage(token: string) {
+  localStorage.setItem("jwtToken", token);
+}
+
 function* handleSignIn(action: ReturnType<typeof signIn>) {
-  yield call(Router.push, PAGES.HOME);
+  yield call(saveTokenInLocalStorage, action.payload.token);
+  yield put(goToHomePage());
 }
 
 function* handleSignOut(action: ReturnType<typeof signOut>) {
-  yield call(Router.push, PAGES.AUTH);
+  yield put(goToAuthPage());
 }
 
 export default function* authSaga(): Generator {

@@ -6,6 +6,7 @@ import rootSaga from "./rootSaga";
 import { reducer as authReducer } from "./domains/auth";
 import { reducer as errorReducer } from "./domains/error";
 import { reducer as modalReducer } from "./domains/modal";
+import { reducer as boostersReducer } from "./domains/boosters";
 
 let sagaMiddleware = createSagaMiddleware();
 
@@ -14,6 +15,7 @@ export const store = configureStore({
     auth: authReducer,
     error: errorReducer,
     modal: modalReducer,
+    boosters: boostersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),

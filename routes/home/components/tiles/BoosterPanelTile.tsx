@@ -2,14 +2,15 @@ import styled from "styled-components";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Route from "next/router";
 
 import NoelPicturePath from "../../../../public/characters/Noel.webp";
 import Image from "next/image";
-import { PAGES } from "../../../../constants/pages";
+import { useDispatch } from "react-redux";
+import { goToBoostersPage } from "../../../../store/domains/router/slice";
 
 const BoosterPanelTile = (): JSX.Element => {
-  const handleClick = () => Route.push(PAGES.BOOSTERS);
+  const dispatch = useDispatch();
+  const handleClick = () => dispatch(goToBoostersPage());
   return (
     <StyledCard onClick={handleClick}>
       <StyledImage src={NoelPicturePath} alt="Noel" />

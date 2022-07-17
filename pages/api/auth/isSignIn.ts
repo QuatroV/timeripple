@@ -1,7 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { User } from "../../../db/models/models";
 import { CommonServerResponse } from "../../../types/api";
-import { generateJwt } from "../../../utils/cipher";
 import jwtDecode from "jwt-decode";
 
 type ResponseData = CommonServerResponse & { token?: string };

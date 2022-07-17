@@ -2,13 +2,12 @@ import styled from "styled-components";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Route from "next/router";
-
-import NoelPicturePath from "../../../../public/characters/Noel.webp";
-import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { addDailyBooster } from "../../../../store/domains/boosters/slice";
 
 const DailyBoosterTile = (): JSX.Element => {
-  const handleClick = () => {};
+  const dispatch = useDispatch();
+  const handleClick = () => dispatch(addDailyBooster());
   return (
     <StyledCard onClick={handleClick}>
       <CardContent>
