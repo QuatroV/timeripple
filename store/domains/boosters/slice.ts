@@ -1,12 +1,15 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { Card } from "../../../types/cards";
 
 interface BoostersState {
   count?: number;
+  openedBooster?: Card[];
 }
 
 const initialState: BoostersState = {
   count: undefined,
+  openedBooster: undefined,
 };
 
 export const boostersSlice = createSlice({
@@ -16,10 +19,19 @@ export const boostersSlice = createSlice({
     setBoostersCount: (state, action: PayloadAction<number>) => {
       state.count = action.payload;
     },
+    openBooster: (state) => {
+      if (!state.count) return;
+      state.count = state.count - 1;
+      return state;
+    },
+    setOpenedBooster: (state, action: PayloadAction<Card[]>) => {
+      state.openedBooster = action.payload;
+    },
   },
 });
 
-export const { setBoostersCount } = boostersSlice.actions;
+export const { setBoostersCount, openBooster, setOpenedBooster } =
+  boostersSlice.actions;
 
 export const addDailyBooster = createAction("addDailyBooster");
 

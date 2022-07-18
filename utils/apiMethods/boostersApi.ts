@@ -1,4 +1,5 @@
 import { CommonServerResponse } from "../../types/api";
+import { Card } from "../../types/cards";
 import { authApi } from "./base";
 
 type GetBoosterCountResponse = CommonServerResponse & {
@@ -14,3 +15,10 @@ type GetDailyBoosterResponse = CommonServerResponse & {
 
 export const getDailyBooster = (): Promise<GetDailyBoosterResponse> =>
   authApi.get("/boosters/dailyBooster").then((res) => res.data);
+
+type GetOpenBoosterResponse = CommonServerResponse & {
+  cards?: Card[];
+};
+
+export const getOpenBooster = (): Promise<GetOpenBoosterResponse> =>
+  authApi.get("/boosters/open").then((res) => res.data);

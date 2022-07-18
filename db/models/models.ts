@@ -27,12 +27,24 @@ const SpellCard = sequelize.define("spellCard", {
 const Card = sequelize.define("card", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true },
-  type: { type: DataTypes.STRING, unique: true },
+  type: { type: DataTypes.STRING },
+  color: { type: DataTypes.STRING },
+
   detailsId: { type: DataTypes.INTEGER },
+});
+
+const CardInstance = sequelize.define("cardInstance", {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
 User.hasOne(CardCollection);
 CardCollection.belongsTo(User);
+
+CardCollection.hasMany(CardInstance);
+CardInstance.belongsTo(CardCollection);
+
+Card.hasMany(CardInstance);
+CardInstance.belongsTo(Card);
 
 Card.hasOne(SpellCard, {
   foreignKey: "detailsId",
@@ -52,4 +64,4 @@ Card.hasOne(HeroCard, {
 });
 HeroCard.belongsTo(Card, { foreignKey: "detailsId", constraints: false });
 
-export { User, Card, HeroCard, SpellCard, CardCollection };
+export { User, Card, HeroCard, SpellCard, CardCollection, CardInstance };

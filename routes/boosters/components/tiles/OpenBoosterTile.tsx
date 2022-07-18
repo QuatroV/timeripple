@@ -6,12 +6,14 @@ import Typography from "@mui/material/Typography";
 import NoelPicturePath from "../../../../public/characters/Noel.webp";
 import Image from "next/image";
 import { Badge } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { boostersCountSelector } from "../../../../store/domains/boosters/selectors";
+import { openBooster } from "../../../../store/domains/boosters/slice";
 
 const OpenBoosterTile = (): JSX.Element => {
   const boosterCount = useSelector(boostersCountSelector);
-  const handleClick = () => {};
+  const dispatch = useDispatch();
+  const handleClick = () => dispatch(openBooster());
   return (
     <StyledCard onClick={handleClick}>
       <StyledImage src={NoelPicturePath} alt="Noel" />
