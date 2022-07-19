@@ -7,7 +7,7 @@ import NoelPicturePath from "../../../../public/characters/Noel.webp";
 import Image from "next/image";
 import { Badge } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { boostersCountSelector } from "../../../../store/domains/boosters/selectors";
+import { boostersCountSelector } from "../../../../store/domains/boosters";
 import { openBooster } from "../../../../store/domains/boosters/slice";
 
 const OpenBoosterTile = (): JSX.Element => {

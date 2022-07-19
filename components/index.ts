@@ -7,3 +7,4 @@ export * from "./Modal";
 export * from "./PageTitle";
 export * from "./Panel";
 export * from "./SquadContainer";
+export * from "./cards/CardPreview";
