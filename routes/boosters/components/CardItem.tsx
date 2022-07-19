@@ -1,4 +1,11 @@
-import { Avatar, Fade, ListItem, ListItemText, Modal } from "@mui/material";
+import {
+  Avatar,
+  capitalize,
+  Fade,
+  ListItem,
+  ListItemText,
+  Modal,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { Card } from "../../../types/cards";
@@ -28,7 +35,7 @@ const CardItem = ({ card, key }: { card: Card; key: number }): JSX.Element => {
         <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         <ListItemText
           primary={card.name}
-          secondary={card.type}
+          secondary={`${capitalize(card.color)} ${card.type}`}
           sx={{ marginLeft: "16px" }}
         />
       </ListItem>
